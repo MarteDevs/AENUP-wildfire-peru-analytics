@@ -57,6 +57,7 @@ AENUP-wildfire-peru-analytics/
 3. **Análisis Estadístico:** Genera reportes por año, mes y nivel de severidad.
 4. **Visualización Estática:** Exporta gráficas en PNG útiles para reportes técnicos.
 5. **Análisis Geoespacial:** Exporta mapas web de calor (Heatmaps) y mapas de clústeres dinámicos.
+6. **Dashboard Interactivo:** Proveemos una aplicación web construida con Streamlit que te permite filtrar e interactuar con los datos visualmente.
 
 ### Instalación y Ejecución
 
@@ -78,3 +79,27 @@ AENUP-wildfire-peru-analytics/
    ```
 
 Una vez que el script finaliza ("Proceso terminado sin errores"), puedes encontrar los CSV limpios en `data/processed/`, las gráficas en `outputs/figures/`, y abrir los mapas interactivos ubicados en `outputs/maps/` usando cualquier navegador web.
+
+### 📊 Despliegue del Dashboard Interactivo
+
+Hemos construido una aplicación web de alto rendimiento utilizando **Streamlit** y **Plotly** para reemplazar los gráficos estáticos por interactivos. El dashboard incluye:
+- **Filtros Laterales:** Permite segmentar 1.4 millones de registros por Año, Mes, Sensor y Gravedad.
+- **KPIs en Tiempo Real:** Métricas que se actualizan dinámicamente según tus filtros.
+- **Visualizaciones Interactivas:** Gráficos de tendencias temporales y distribución por nivel de FRP.
+- **Mapa Geoespacial Integrado:** Para evitar que el navegador se congele, el mapa aplica automáticamente un límite inteligente: si los filtros seleccionados agrupan más de 50,000 puntos, renderizará un muestreo aleatorio uniforme para mantener la web fluida (mientras que los KPIs sí calculan el 100% de la data).
+- **Tema Oscuro Persistente:** Interfaz diseñada con colores y fondos optimizados.
+
+#### ¿Cómo ejecutarlo?
+
+Si deseas explorar los datos, ejecuta el siguiente comando teniendo tu entorno virtual activado:
+
+```bash
+streamlit run src/dashboard.py
+```
+
+> **Nota sobre el primer inicio:** 
+> La primera vez que ejecutes Streamlit en tu computadora, es posible que la terminal te muestre el siguiente mensaje:
+> `If you'd like to receive helpful onboarding emails... Please enter your email address below.`
+> **No es necesario ingresar ningún correo**. Simplemente deja el espacio en blanco, presiona la tecla **Enter** (Intro) y la aplicación continuará cargando.
+
+Tu navegador se abrirá automáticamente (usualmente en `http://localhost:8501`) mostrando el panel de control interactivo.
