@@ -17,6 +17,7 @@ from plots import (
     plot_frp_summary,
     plot_geo_scatter
 )
+from maps import generate_heatmap, generate_cluster_map
 
 
 # Carga los datos crudos
@@ -58,6 +59,10 @@ plot_sensor_summary(sensor_sum)
 plot_daynight_summary(daynight)
 plot_frp_summary(frp_sum)
 plot_geo_scatter(combined)
+
+# Genera mapas interactivos HTML
+generate_heatmap(combined)
+generate_cluster_map(combined)
 
 print("Proceso terminado sin errores:")
 print("MODIS:", modis.shape)
